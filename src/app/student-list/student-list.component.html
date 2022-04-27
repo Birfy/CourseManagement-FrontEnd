@@ -1,0 +1,27 @@
+<h2> Student List </h2>
+<a routerLink="create-student">Add Student</a>
+<table class = "table table-striped" *ngIf = "isDataAvailable">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>LastName</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let student of students" >
+            <td>{{student.firstName}}</td>
+            <td>{{student.lastName}}</td>
+            <td>{{student.email}}</td>
+            <td>{{student.department.name}}</td>
+            <td>
+                <button (click) = "updateStudent(student.id)" class = "btn btn-info">Update</button>
+                <button (click) = "deleteStudent(student.id)" class = "btn btn-danger">Delete</button>
+                <button (click) = "viewStudentDetails(student.id)" class = "btn btn-success">View</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
