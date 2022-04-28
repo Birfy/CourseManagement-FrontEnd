@@ -1,29 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Course } from '../course';
 import { CourseStudent } from '../course-student';
 import { CourseStudentService } from '../course-student.service';
 import { CourseTime } from '../course-time';
+import { CourseService } from '../course.service';
 import { Grade } from '../grade';
-import { Student } from '../student';
-import { StudentService } from '../student.service';
 import { Weekday } from '../weekday';
 
 @Component({
-  selector: 'app-student-details',
-  templateUrl: './student-details.component.html',
-  styleUrls: ['./student-details.component.css']
+  selector: 'app-course-details',
+  templateUrl: './course-details.component.html',
+  styleUrls: ['./course-details.component.css']
 })
-export class StudentDetailsComponent implements OnInit {
+export class CourseDetailsComponent implements OnInit {
+
   weekday: any = Weekday;
   coursetime: any = CourseTime;
-  courseGrade: any = Grade;
   
   id!: number;
-  student!: Student;
+  course!: Course;
   courseStudents!: CourseStudent[];
   isDataAvailable: boolean = false;
+  grade = Grade;
+
   constructor(private route: ActivatedRoute,
-    private studentService: StudentService,
+    private courseService: CourseService,
     private courseStudentService: CourseStudentService) { }
 
   ngOnInit(): void {
@@ -33,18 +35,15 @@ export class StudentDetailsComponent implements OnInit {
       this.isDataAvailable = true
     );
 
-    
-
   }
   async getData() {
-    this.student = await this.studentService.getStudentById(this.id);
-    this.courseStudents = await this.studentService.getCourses(this.id);
+    this.course = await this.courseService.getCourseById(this.id);
+    this.courseStudents = await this.courseService.getStudents(this.id);
   }
 
-  async dropCourse(courseId: number, studentId: number) {
-    await this.courseStudentService.dropCourse(courseId, studentId);
+  async gradeCourse(courseId: number, studentId: number, grade: Grade) {
+    await this.courseStudentService.gradeCourse(courseId, studentId, grade);
     this.getData();
   }
-
 
 }

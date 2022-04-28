@@ -14,13 +14,14 @@ export class CreateStudentComponent implements OnInit {
 
   student: Student = new Student();
   departments!: Department[];
+  isDataAvailable = false;
 
   constructor(private studentService: StudentService,
     private departmentService: DepartmentService,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.getDepartmentList();
+    this.getDepartmentList().then(() => this.isDataAvailable = true);
   }
 
   onSubmit() {

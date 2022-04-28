@@ -37,6 +37,10 @@ export class StudentService {
     return await this.httpClient.get(`${this.baseURL}/${id}/courses`).toPromise();
   }
 
+  async getAvailableCourses(id: number): Promise<any> {
+    return await this.httpClient.get(`${this.baseURL}/${id}/select`).toPromise();
+  }
+
   // assignDepartment(id: number, departmentId: number): Observable<Student> {
   //   return this.httpClient.put<Student>(`${this.baseURL}/${id}/departmnet/${departmentId}`, null);
   // }

@@ -10,6 +10,10 @@ import { CreateStudentComponent } from './create-student/create-student.componen
 import { UpdateStudentComponent } from './update-student/update-student.component';
 import { StudentDetailsComponent } from './student-details/student-details.component';
 import { CourseListComponent } from './course-list/course-list.component';
+import { CourseDetailsComponent } from './course-details/course-details.component';
+import { CreateCourseComponent } from './create-course/create-course.component';
+import { UpdateCourseComponent } from './update-course/update-course.component';
+import { SelectCourseComponent } from './select-course/select-course.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { CourseListComponent } from './course-list/course-list.component';
     CreateStudentComponent,
     UpdateStudentComponent,
     StudentDetailsComponent,
-    CourseListComponent
+    CourseListComponent,
+    CourseDetailsComponent,
+    CreateCourseComponent,
+    UpdateCourseComponent,
+    SelectCourseComponent
   ],
   imports: [
     FormsModule,

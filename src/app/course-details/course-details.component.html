@@ -1,0 +1,58 @@
+<h3> View Course Details</h3>
+<div *ngIf="isDataAvailable">
+    <div>
+        <label> <b>Name: </b></label> {{course.name}}
+    </div>
+    <div>
+        <label> <b>Location: </b></label> {{course.location.building}} {{course.location.room}}
+    </div>
+    <div>
+        <label> <b>Department: </b></label> {{course.department.name}}
+    </div>
+    <div>
+        <label> <b>Teacher: </b></label> {{course.teacher.firstName}} {{course.teacher.lastName}}
+    </div>
+    <div>
+        <label> <b>Timeslots: </b></label> 
+        <p *ngFor = "let ts of course.timeslots">{{weekday[ts.weekday]}} {{coursetime[ts.courseTime]}} </p>
+    </div>
+
+</div>
+
+<h3> Students</h3>
+
+<table class="table table-striped" *ngIf="isDataAvailable">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Department</th>
+            <th>Status</th>
+            <th>Grade</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cs of courseStudents">
+            <td>{{cs.student.firstName}}</td>
+            <td>{{cs.student.lastName}}</td>
+            <td>{{cs.student.department.name}}</td>
+            <td>{{cs.courseStatus}}</td>
+            <td>
+                <form *ngIf="cs.courseStatus == 'ENROLLED' || cs.courseStatus == 'ENDED'">
+                    <select class="form-control" id="grade" [(ngModel)]="cs.courseGrade" name="grade">
+
+                        <option *ngFor="let g of grade | keyvalue" [ngValue]="g.key">{{g.value}}</option>
+
+
+                    </select>
+                </form>
+            </td>
+            <td>
+                <button *ngIf="cs.courseStatus == 'ENROLLED'  || cs.courseStatus == 'ENDED'"
+                    (click)="gradeCourse(cs.course.id, cs.student.id, cs.courseGrade)"
+                    class="btn btn-info">Grade</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

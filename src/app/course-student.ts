@@ -1,4 +1,5 @@
 import { Course } from "./course";
+import { Grade } from "./grade";
 import { Student } from "./student";
 
 export class CourseStudent {
@@ -6,6 +7,6 @@ export class CourseStudent {
     courseStatus!: string;
     course!: Course;
     student!: Student;
-    courseGrade!: string;
+    courseGrade!: Grade;
 
 }

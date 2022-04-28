@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Course } from '../course';
 import { CourseService } from '../course.service';
+import { CourseTime } from '../course-time';
+import { Weekday } from '../weekday';
 
 @Component({
   selector: 'app-course-list',
@@ -12,8 +14,11 @@ export class CourseListComponent implements OnInit {
   courses!: Course[];
   isDataAvailable: boolean = false;
 
+  weekday: any = Weekday;
+  coursetime: any = CourseTime;
+
   constructor(private courseService: CourseService,
-    router: Router) { }
+    private router: Router) { }
 
   
 
@@ -25,13 +30,13 @@ export class CourseListComponent implements OnInit {
     this.courses = await this.courseService.getCoursesList();
   }
 
-  // updateStudent(id: number) {
-  //   this.router.navigate(['/students/update', id])
-  // }
+  updateCourse(id: number) {
+    this.router.navigate(['/courses/update', id])
+  }
 
-  // viewStudentDetails(id: number) {
-  //   this.router.navigate(['/students', id])
-  // }
+  viewCourseDetails(id: number) {
+    this.router.navigate(['/courses', id])
+  }
 
   // async deleteStudent(id: number) {
   //   await this.studentService.deleteStudent(id);

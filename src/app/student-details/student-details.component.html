@@ -17,12 +17,15 @@
 
 <h3> Courses</h3>
 
+<a routerLink="select-course/">Select Course</a>
+
 <table class = "table table-striped" *ngIf = "isDataAvailable">
     <thead>
         <tr>
             <th>Name</th>
             <th>Department</th>
             <th>Location</th>
+            <th>Timeslots</th>
             <th>Status</th>
             <th>Grade</th>
             <th>Actions</th>
@@ -33,8 +36,9 @@
             <td>{{cs.course.name}}</td>
             <td>{{cs.course.department.name}}</td>
             <td>{{cs.course.location.building}} {{cs.course.location.room}}</td>
+            <td><p *ngFor = "let ts of cs.course.timeslots">{{weekday[ts.weekday]}} {{coursetime[ts.courseTime]}} </p></td>
             <td>{{cs.courseStatus}}</td>
-            <td>{{cs.courseGrade}}</td>
+            <td>{{courseGrade[cs.courseGrade]}}</td>
             <td>
                 <button *ngIf = "cs.courseStatus == 'ENROLLED'" (click) = "dropCourse(cs.course.id, cs.student.id)" class = "btn btn-info">Drop</button>
             </td>
