@@ -25,6 +25,7 @@
             <th>Name</th>
             <th>Department</th>
             <th>Location</th>
+            <th>Teacher</th>
             <th>Timeslots</th>
             <th>Status</th>
             <th>Grade</th>
@@ -36,6 +37,7 @@
             <td>{{cs.course.name}}</td>
             <td>{{cs.course.department.name}}</td>
             <td>{{cs.course.location.building}} {{cs.course.location.room}}</td>
+            <td>{{cs.course.teacher.firstName}} {{cs.course.teacher.lastName}}</td>
             <td><p *ngFor = "let ts of cs.course.timeslots">{{weekday[ts.weekday]}} {{coursetime[ts.courseTime]}} </p></td>
             <td>{{cs.courseStatus}}</td>
             <td>{{courseGrade[cs.courseGrade]}}</td>
